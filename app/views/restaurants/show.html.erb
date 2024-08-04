@@ -2,12 +2,21 @@
 
 <h1><%= @restaurant.name %></h1>
 
-<p><%= link_to "(Edit)", edit_restaurant_path(@restaurant), style: "text-decoration: none" %></p>
+<p><%= link_to "(Edit)", edit_restaurant_path(@restaurant), style: "text-decoration: none" %> | <%= link_to "(+ Add a review)", new_restaurant_review_path(@restaurant), style: "text-decoration: none;" %></p>
 
 <ul style="list-style-type: none;">
+  <li>Chef: <%= link_to @restaurant.chef_name, chef_restaurant_path, style: "text-decoration: none;"%></li>
   <li>Rating: <%= "⭐️" * @restaurant.rating %></li>
   <li>Address: <%= @restaurant.address %></li>
   <li><%= link_to "Delete",
           restaurant_path(@restaurant),
           data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %></li>
+</ul>
+
+
+<h3>Reviews</h3>
+<ul class="list-group">
+  <% @restaurant.reviews.each do |review| %>
+      <li class="list-group-item"><%= review.content %> | <%= link_to "Delete", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></li>
+  <% end %>
 </ul>

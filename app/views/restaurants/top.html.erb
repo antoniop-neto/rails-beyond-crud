@@ -1,0 +1,8 @@
+<p><%= link_to "<< Restaurants", restaurants_path, style: "text-decoration: none;" %></p>
+
+<h1>5-Star Restaurants ⭐️</h1>
+
+<ol><% @restaurants.each do |restaurant| %>
+    <li><%= link_to restaurant.name, restaurant_path(restaurant), style: "text-decoration: none;" %></li>
+    <% end %>
+</ol>
